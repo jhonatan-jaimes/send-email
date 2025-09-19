@@ -3,9 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>Correo electronico desde java</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            background-color: #fefefe;
+            display: flex;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+        }
+
+        .env-message{
+            margin: auto;
+            background-color: #fff;
+            width: 75%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px gray;
+        }
+
+        .tittle{
+            margin: 0px;
+            padding: 0px;
+            padding: 20px;
+            color: #eee;
+        }
+
+        .message {
+            margin: 0px;
+            padding: 0px;
+            color: #666;
+        }
+
+        .margen-top {
+            display: block;
+            width: 100%;
+            background-color: #0af;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .margen-bot {
+            display: block;
+            width: 100%;
+            background-color: #0af;
+            border-radius: 0 0 10px 10px;
+            color: #eee;
+            font-size: 12px;
+        }
+
+        .mensaje{
+            padding: 20px;
+        }
+
+        .type-contact{
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .env-con{
+            display: block;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hola desde la app</h1>
-    <p th:text="${message}"></p>
+<div class="env-message">
+    <div class="margen-top">
+        <h1 th:text="${tittle}" class="tittle"></h1>
+    </div>
+    <div class="mensaje">
+        <p th:text="${message}" class="message"></p>
+    </div>
+    <div class="margen-bot">
+        <div class="type-contact">
+            <div class="env-con">
+                <p>Contacto</p>
+                <p th:text="${contact}"></p>
+            </div>
+            <div class="env-con">
+                <p>Pagina</p>
+                <p th:text="${page}"></p>
+            </div>
+            <div class="env-con">
+                <p>Correo</p>
+                <p th:text="${email}"></p>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

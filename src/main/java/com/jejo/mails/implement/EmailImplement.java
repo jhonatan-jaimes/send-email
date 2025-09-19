@@ -25,23 +25,32 @@ public class EmailImplement implements EmailService {
 
     @Override
     public Message sendEmail(EmailDto emailDto) throws MessagingException {
-        try{
+        try {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper helper =
                     new MimeMessageHelper(mimeMessage, true, "UTF-8");
+
             helper.setTo(emailDto.to());
             helper.setSubject(emailDto.subject());
-            // helper.setText(emailDto.message()); // <-- Texto plano en el correo electronico
 
             Context context = new Context();
+            context.setVariable("tittle", emailDto.tittle());
             context.setVariable("message", emailDto.message());
+            context.setVariable("contact", emailDto.contact());
+            context.setVariable("page", emailDto.page());
+            context.setVariable("email", emailDto.email());
 
             String contentHtml = templateEngine.process("email", context);
 
             helper.setText(contentHtml, true);
-        } catch (Exception e){
-            throw new RuntimeException("Fallo el envio" + e);
+
+            // 🚀 Envía el correo
+            javaMailSender.send(mimeMessage);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Fallo el envio: " + e.getMessage(), e);
         }
         return new Message("Enviado satisfactoriamente");
     }
 }
+
