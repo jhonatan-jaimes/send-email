@@ -44,7 +44,6 @@ public class EmailImplement implements EmailService {
 
             helper.setText(contentHtml, true);
 
-            // 🚀 Envía el correo
             javaMailSender.send(mimeMessage);
 
         } catch (Exception e) {
