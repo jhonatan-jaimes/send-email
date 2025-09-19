@@ -47,7 +47,7 @@ public class EmailImplement implements EmailService {
             javaMailSender.send(mimeMessage);
 
         } catch (Exception e) {
-            throw new RuntimeException("Fallo el envio: " + e.getMessage(), e);
+            throw new RuntimeException("Fallo el envio: " + e.getMessage());
         }
         return new Message("Enviado satisfactoriamente");
     }
